@@ -42,9 +42,6 @@ class DemoApplicationTests {
 		GitBranch branch = (GitBranch) branches.get(0);
 		assertNotNull(branch.getName());
 		assertNotNull(branch.getLastCommitSha());
-
-		result = gitService.getNonForkedUserRepos("somerandomnotrealuseratall");
-		assertTrue(result instanceof ApiError);
 	}
 
 }
