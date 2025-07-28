@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.example.test.demo.api.model.ApiError;
 import com.example.test.demo.api.model.GitUserRepo;
 import com.example.test.demo.api.model.GitUserRepo.GitBranch;
 import com.example.test.demo.service.GitService;
@@ -21,8 +22,8 @@ class DemoApplicationTests {
 	private GitService gitService;
 
 	@Test
-	void testGetNonForkedUserReposForValidUser() {
-		Object result = gitService.getNonForkedUserRepos("octocat"); // Use a real GitHub user
+	void testGetNonForkedUserRepos() {
+		Object result = gitService.getNonForkedUserRepos("akneroth");
 		
 		assertTrue(result instanceof List<?>);
 		List<?> repos = (List<?>) result;
@@ -32,7 +33,7 @@ class DemoApplicationTests {
 		GitUserRepo repo = (GitUserRepo) repos.get(0);
 		assertNotNull(repo.getRepoName());
 		assertNotNull(repo.getLogin());
-		
+
 		assertTrue(repo.getBranches() instanceof List<?>);
 		List<?> branches = repo.getBranches();
 		assertFalse(repos.isEmpty());
@@ -41,6 +42,9 @@ class DemoApplicationTests {
 		GitBranch branch = (GitBranch) branches.get(0);
 		assertNotNull(branch.getName());
 		assertNotNull(branch.getLastCommitSha());
+
+		result = gitService.getNonForkedUserRepos("somerandomnotrealuseratall");
+		assertTrue(result instanceof ApiError);
 	}
 
 }
