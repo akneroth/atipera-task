@@ -12,10 +12,12 @@
 - Java 21+
 - Gradle
 
-### Build & Run
+### Build, Run, Test
 
 ```powershell
 ./gradlew bootRun
+
+./gradlew test
 ```
 
 ### API Usage
@@ -33,7 +35,7 @@
     "branches": [
       {
         "name": "main",
-        "lastCommitSha": "abc123..."
+        "lastCommitSha": "abc123"
       }
     ]
   }
@@ -48,15 +50,3 @@
   "message": "Not Found"
 }
 ```
-
-## Testing
-
-Run integration tests:
-
-```powershell
-./gradlew test
-```
-
-## License
-
-MIT
