@@ -26,14 +26,16 @@ public class GitService {
         @Override public void handleError(org.springframework.http.client.ClientHttpResponse response) {}
     };
 
-    public Object getUserRepos(String username) {
+    public Object getNonForkedUserRepos(String username) {
         String reposUrl = githubApiBaseUrl + "/users/" + username + "/repos";
+        ResponseEntity<String> response;
+        
         RestTemplate restTemplate = new RestTemplate();
         restTemplate.setErrorHandler(noErrorHandler);
-        ResponseEntity<String> response;
 
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
+
         HttpEntity<String> entity = new HttpEntity<>(headers);
 
         response = restTemplate.exchange(reposUrl, HttpMethod.GET, entity, String.class);

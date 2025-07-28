@@ -17,14 +17,9 @@ public class ApiController {
         this.git = gitService;
     }
 
-    @GetMapping("/")
-    public String helloWorld() {
-        return "Hello world";
-    }
-
-    @GetMapping("/gitRepos")
-    public Object getGitRepos(@RequestParam("user") String user) {
-        return git.getUserRepos(user);
+    @GetMapping("/gitNonForkedRepos")
+    public Object getNonForkedUserRepos(@RequestParam("user") String user) {
+        return git.getNonForkedUserRepos(user);
     }
 
 }
