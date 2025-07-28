@@ -22,7 +22,7 @@
 
 ### API Usage
 
-- **GET** `/gitNonForkedRepos?user={username}`  
+- **GET** `/getNonForkedRepos?user={username}`  
   Returns a JSON array of repositories or an error object.
 
 #### Example Success Response
